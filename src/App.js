@@ -17,7 +17,7 @@ import {
 import logo from './logo.svg';
 import './App.css';
 
-const widgets = {
+const widgetList = {
   BasicCard,
   BasicSelect,
   BasicTable,
@@ -31,7 +31,6 @@ const widgets = {
   NumberInput: TextInput,
 };
 
-
 class App extends Component {
 
   constructor(props) {
@@ -39,6 +38,7 @@ class App extends Component {
     this.state = {
       pid: 'start',
       widgets: states.init(),
+      error:'тутвулвту',
 
       amount:'',
       inn:'',
@@ -49,7 +49,7 @@ class App extends Component {
 
   createWidgets(){
     return this.state.widgets.map(widget => {
-      const Widget = widgets[widget.name];
+      const Widget = widgetList[widget.name];
       return (
         <Widget
           {...widget}
@@ -64,13 +64,14 @@ class App extends Component {
   }
 
   render() {
+    const {widgets, error} = this.state;
     return (
       <div className="App" style={{ flex: 1 }}>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{this.state.widgets[0].text}</h1>
+          <h1 className="App-title">{widgets[0].text}</h1>
         </header>
-
+        <div style={{height:20, backgroundColor: error?'#f99':'#fff'}}>{error}</div>
         <Content>
           {this.createWidgets()}
         </Content>

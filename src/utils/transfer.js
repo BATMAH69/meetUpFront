@@ -16,8 +16,7 @@ const clean = (state) => ({
 export const process = (param, query, cb, body) => {
   const type = param === 'start' ? 'name' : 'event';
   const cleaner = param === 'start' ? clean : i => i;
-  debugger;
-  if (query === 'home'){
+  if (query === 'home') {
     cb(cleaner({
       widgets: states.init(),
       pid: 'renew',
@@ -33,8 +32,15 @@ export const process = (param, query, cb, body) => {
     body: JSON.stringify(body)
   })
     .then(res => res.json())
-    .then(({ data, pid, processName, stateName }) => cb(cleaner({
-      widgets: (states[`${processName}>${stateName}`] || states.init)(data),
-      pid: pid,
-    })));
+    .then(({ data, pid, processName, stateName, error }) => {
+      if (error){
+        cb({error});
+        return;
+      }
+      cb(cleaner({
+        widgets: (states[`${processName}>${stateName}`] || states.init)(data),
+        pid: pid,
+        error:'',
+      }))
+    });
 };

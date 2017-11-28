@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const Title = () => (<div style={{ height: 40 }} />);
+export const Title = () => (<div style={{ height: 20 }} />);
