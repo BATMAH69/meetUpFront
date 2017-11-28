@@ -4,6 +4,7 @@ import {Content} from './components/Content';
 import {states} from './utils/mocker';
 import {
   BasicCard,
+  BasicSelect,
   BasicTable,
   Buttons,
   ClientInfo,
@@ -18,6 +19,7 @@ import './App.css';
 
 const widgets = {
   BasicCard,
+  BasicSelect,
   BasicTable,
   Buttons,
   ClientInfo,

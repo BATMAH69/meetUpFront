@@ -10,7 +10,6 @@ export const NavButton = ({ text = 'Далее', onNext, state, action = 'next',
     raised
     color={color}
     onClick={() => process(param || state.pid, action, onNext, filter(state, fields))}
-    style={{marginLeft:'auto'}}
   >
     {text}
   </Button>

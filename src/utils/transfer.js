@@ -16,7 +16,15 @@ const clean = (state) => ({
 export const process = (param, query, cb, body) => {
   const type = param === 'start' ? 'name' : 'event';
   const cleaner = param === 'start' ? clean : i => i;
-  return fetch(`/rest/process/${param}?${type}=${query}`, {
+  debugger;
+  if (query === 'home'){
+    cb(cleaner({
+      widgets: states.init(),
+      pid: 'renew',
+    }));
+    return;
+  }
+  fetch(`/rest/process/${param}?${type}=${query}`, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

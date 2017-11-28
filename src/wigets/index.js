@@ -1,4 +1,5 @@
 import { BasicCard } from "./BasicCard";
+import { BasicSelect } from "./BasicSelect";
 import { BasicTable } from "./BasicTable";
 import { Buttons } from "./Buttons";
 import { ClientInfo } from "./ClientInfo";
@@ -10,6 +11,7 @@ import { Title } from "./Title";
 
 export {
   BasicCard,
+  BasicSelect,
   BasicTable,
   Buttons,
   ClientInfo,

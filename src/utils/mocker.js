@@ -1,3 +1,36 @@
+const identification = () => [
+  {
+    name: 'Title',
+    text: 'Идентификация',
+  }, {
+    id: 'inn',
+    name: 'TextInput',
+    label: 'Инн'
+  }, {
+    name: 'Buttons',
+    buttons: [{
+      fields: ['inn'],
+    }]
+  }
+];
+
+const success = () => [{
+  name: 'Title',
+  text: 'Успешная операция',
+}, {
+  name: 'Image',
+  src: 'http://img11.hostingpics.net/pics/999033vaultboyvectorbybac0nbr0nyd5lo6mw.png',
+  maxWidth: 160,
+}, {
+  name: 'Buttons',
+  buttons: [{
+    fields: [],
+    text: 'Вернуться',
+    action: 'home',
+    param: 'start',
+  }]
+}];
+
 export const states = {
   'init': () => [
     {
@@ -6,28 +39,93 @@ export const states = {
     }, {
       name: 'Image',
       src: 'https://image.playerauctions.com/sellerstore/554129/20160221131953_LogoImage_71%D1%85541.png',
+      maxWidth: 120,
+    }, {
+      name: 'NextButton',
+      text: 'Создание счета',
+      action: 'create_account',
+      param: 'start',
+    }, {
+      name: 'NextButton',
+      text: 'Создание перевода',
+      action: 'deposit',
+      param: 'start',
+    }
+  ],
+  'deposit>identification': identification,
+  'create_account>identification': identification,
+  'create_account>reservedAccounts': ({ clientInfo, reservedAccount }) => [
+    {
+      name: 'Title',
+      text: 'Зарезервированные счета',
+    }, {
+      name: 'ClientInfo',
+      info: clientInfo,
+    }, {
+      name: 'BasicTable',
+      // name: 'BasicTable',
+      header: { "accountNumber": "Номер счета", "accountName": "Hазвание", "currencyCode": "Валюта" },
+      actions: { "create_doc": "Изменить" },
+      list: reservedAccount,
     }, {
       name: 'Buttons',
       buttons: [{
         fields: [],
-        action: 'deposit',
-        param: 'start',
+        text: 'создать',
+        action: 'new',
       }]
     }],
-  'deposit>identification': () => [
+  'create_account>newAccount': () => [
     {
       name: 'Title',
-      text: 'Идентификация',
+      text: 'Резервирование счета',
     }, {
-      id: 'inn',
+      id: 'currencyCode',
+      name: 'BasicSelect',
+      label: 'Валюта счета',
+      list: ['RUB','USD','EUR','BTC','OMG','HTML5'],
+      def:'EUR',
+    }, {
+      id: 'accountNumber',
+      name: 'NumberInput',
+      label: 'Номер счёта'
+    }, {
+      id: 'accountName',
       name: 'TextInput',
-      label: 'Инн'
+      label: 'Название счета'
     }, {
       name: 'Buttons',
       buttons: [{
-        fields: ['inn'],
+        fields: ['accountNumber', 'accountName', 'currencyCode'],
       }]
     }],
+  'create_account>activateAccount': ({accountNumber, accountName, currencyCode}) => [
+    {
+      name: 'Title',
+      text: 'Резервирование счета',
+    }, {
+      name: 'Text',
+      label: 'Валюта счета',
+      text: currencyCode,
+    }, {
+      name: 'Text',
+      label: 'Номер счёта',
+      text: accountNumber,
+    }, {
+      name: 'Text',
+      label: 'Название счета',
+      text: accountName,
+    }, {
+      name: 'Buttons',
+      buttons: [{
+        text: 'Назад',
+        action: 'reject',
+        color: 'default',
+      }, {
+        action: 'confirm',
+      }]
+    }],
+  'create_account>finalScreen': success,
   'deposit>accountList': ({ clientInfo, accountList }) => [
     {
       name: 'Title',
@@ -82,26 +180,12 @@ export const states = {
     }, {
       name: 'Buttons',
       buttons: [{
-        text: 'Отмена',
+        text: 'Назад',
         action: 'reject',
         color: 'default',
       }, {
         action: 'confirm',
       }]
     }],
-  'deposit>createDocumentResult': () => [{
-    name: 'Title',
-    text: 'Успешный перевод',
-  }, {
-    name: 'Image',
-    src: 'http://img11.hostingpics.net/pics/999033vaultboyvectorbybac0nbr0nyd5lo6mw.png'
-  }, {
-    name: 'Buttons',
-    buttons: [{
-      fields: [],
-      text: 'Вернуться',
-      action: 'deposit',
-      param: 'start',
-    }]
-  }],
+  'deposit>createDocumentResult': success,
 };

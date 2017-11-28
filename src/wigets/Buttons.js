@@ -8,9 +8,10 @@ export const Buttons = ({ buttons, onNext, state }) => {
       flex: 1,
       display: 'flex',
       alignItems: 'flex-end',
-      width: 180,
+      width: 185,
       justifyContent: 'space-between'
     }}>
+      <div />
       {
         buttons.map((buttons, key) => (
           <NavButton {...buttons} key={key} onNext={onNext} state={state} />
