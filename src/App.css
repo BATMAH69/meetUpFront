@@ -31,12 +31,17 @@
     height: 50px;
     flex-direction: row;
   }
+
   .App-logo {
     height: 40px;
   }
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

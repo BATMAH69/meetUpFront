@@ -33,14 +33,14 @@ export const process = (param, query, cb, body) => {
   })
     .then(res => res.json())
     .then(({ data, pid, processName, stateName, error }) => {
-      if (error){
-        cb({error});
+      if (error) {
+        cb({ error });
         return;
       }
       cb(cleaner({
         widgets: (states[`${processName}>${stateName}`] || states.init)(data),
         pid: pid,
-        error:'',
+        error: '',
       }))
     });
 };

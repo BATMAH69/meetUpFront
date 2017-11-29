@@ -5,6 +5,7 @@ import { Buttons } from "./Buttons";
 import { ClientInfo } from "./ClientInfo";
 import { Image } from "./Image";
 import { NextButton } from "./NextButton";
+import { NumberInput } from "./NumberInput";
 import { Text } from "./Text";
 import { TextInput } from "./TextInput";
 import { Title } from "./Title";
@@ -17,6 +18,7 @@ export {
   ClientInfo,
   Image,
   NextButton,
+  NumberInput,
   Text,
   TextInput,
   Title,

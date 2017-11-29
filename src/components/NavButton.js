@@ -5,7 +5,7 @@ import {
   Button,
 } from 'material-ui';
 
-export const NavButton = ({ text = 'Далее', onNext, state, action = 'next', fields, param, color="primary" }) => (
+export const NavButton = ({ text = 'Далее', onNext, state, action = 'next', fields, param, color = "primary" }) => (
   <Button
     raised
     color={color}

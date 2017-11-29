@@ -1,35 +1,10 @@
 import React, { Component } from 'react';
 
-import {Content} from './components/Content';
-import {states} from './utils/mocker';
-import {
-  BasicCard,
-  BasicSelect,
-  BasicTable,
-  Buttons,
-  ClientInfo,
-  Image,
-  NextButton,
-  Text,
-  TextInput,
-  Title,
-} from './wigets';
-import logo from './logo.svg';
-import './App.css';
+import { Content, Error, Header } from './components';
+import { states } from './utils/mocker';
+import * as widgetList from './wigets';
 
-const widgetList = {
-  BasicCard,
-  BasicSelect,
-  BasicTable,
-  Buttons,
-  ClientInfo,
-  Image,
-  NextButton,
-  Text,
-  TextInput,
-  Title,
-  NumberInput: TextInput,
-};
+import './App.css';
 
 class App extends Component {
 
@@ -38,16 +13,16 @@ class App extends Component {
     this.state = {
       pid: 'start',
       widgets: states.init(),
-      error:'тутвулвту',
+      error: 'keep calm and carry on',
 
-      amount:'',
-      inn:'',
-      recipientAccountNumber:'',
+      amount: '',
+      inn: '',
+      recipientAccountNumber: '',
     };
     this.createWidgets = this.createWidgets.bind(this);
   }
 
-  createWidgets(){
+  createWidgets() {
     return this.state.widgets.map(widget => {
       const Widget = widgetList[widget.name];
       return (
@@ -64,14 +39,11 @@ class App extends Component {
   }
 
   render() {
-    const {widgets, error} = this.state;
+    const { widgets, error } = this.state;
     return (
       <div className="App" style={{ flex: 1 }}>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{widgets[0].text}</h1>
-        </header>
-        <div style={{height:20, backgroundColor: error?'#f99':'#fff'}}>{error}</div>
+        <Header text={widgets[0].text} error={error} />
+        <Error text={error} />
         <Content>
           {this.createWidgets()}
         </Content>
