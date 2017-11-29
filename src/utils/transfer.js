@@ -11,6 +11,10 @@ const clean = (state) => ({
   amount: '',
   inn: '',
   recipientAccountNumber: '',
+  accountNumber: '',
+  accountName: '',
+  currencyCode: '',
+
 });
 
 export const process = (param, query, cb, body) => {
@@ -23,6 +27,7 @@ export const process = (param, query, cb, body) => {
     }));
     return;
   }
+  cb({loader: true});
   fetch(`/rest/process/${param}?${type}=${query}`, {
     headers: {
       'Accept': 'application/json',
@@ -34,13 +39,17 @@ export const process = (param, query, cb, body) => {
     .then(res => res.json())
     .then(({ data, pid, processName, stateName, error }) => {
       if (error) {
-        cb({ error });
+        cb({ error, loader: false });
         return;
       }
       cb(cleaner({
         widgets: (states[`${processName}>${stateName}`] || states.init)(data),
         pid: pid,
         error: '',
+        loader: false,
       }))
+    })
+    .catch(() =>{
+      cb({ loader: false })
     });
 };

@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  zoom: 1.8;
+  zoom: 1.6;
 }
 
 body [class*=MuiTableCell-paddingDefault-] {
@@ -12,6 +12,6 @@ body [class*=MuiTableCell-paddingDefault-] {
 
 @media all and (max-width: 460px) {
   body {
-    zoom: 1.4;
+    zoom: 1.3;
   }
 }
