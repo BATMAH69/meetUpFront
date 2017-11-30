@@ -11,13 +11,14 @@ import {
   TableBody,
 } from 'material-ui';
 
-export const BasicTable = ({ header, list, actions, state, onNext }) => {
+export const BasicTable = ({ title, headers, list, actions, state, onNext }) => {
   return (
     <Paper style={{ marginTop: 30 }}>
+      {title ? <p>{title}</p> : ''}
       <Table>
         <TableHead>
           <TableRow>
-            {Object.keys(header).map(key => <TableCell key={key}>{header[key]}</TableCell>)}
+            {Object.keys(headers).map(key => <TableCell key={key}>{headers[key]}</TableCell>)}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -26,7 +27,7 @@ export const BasicTable = ({ header, list, actions, state, onNext }) => {
               key={item.id}
               onClick={() => process(state.pid, Object.keys(actions)[0], onNext, { id: item.id })}
             >
-              {Object.keys(header).map(key => <TableCell key={key}>{item[key]}</TableCell>)}
+              {Object.keys(headers).map(key => <TableCell key={key}>{item[key]}</TableCell>)}
             </TableRow>
           ))}
         </TableBody>

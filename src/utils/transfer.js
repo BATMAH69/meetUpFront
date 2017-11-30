@@ -37,7 +37,8 @@ export const process = (param, query, cb, body) => {
     body: JSON.stringify(body)
   })
     .then(res => res.json())
-    .then(({ data, pid, processName, stateName, error }) => {
+    .then((res) => {
+      const { data, pid, processName, stateName, error } = res;
       if (error) {
         cb({ error, loader: false });
         return;
@@ -47,9 +48,11 @@ export const process = (param, query, cb, body) => {
         pid: pid,
         error: '',
         loader: false,
+        res: JSON.stringify(res, null, 2),
+        req: JSON.stringify(body, null, 2),
       }))
     })
-    .catch(() =>{
-      cb({ loader: false })
+    .catch((error) =>{
+      cb({ loader: false, net: error.message })
     });
 };

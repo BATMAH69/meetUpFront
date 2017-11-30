@@ -63,10 +63,9 @@ export const states = {
       info: clientInfo,
     }, {
       name: 'BasicTable',
-      // name: 'BasicTable',
-      header: { "accountNumber": "Номер счета", "accountName": "Hазвание", "currencyCode": "Валюта" },
-      actions: { "create_doc": "Изменить" },
-      list: reservedAccount,
+      headers: { "accountNumber": "Номер счета", "accountName": "Hазвание", "currencyCode": "Валюта" },
+      actions: { "activate": "Изменить" },
+      list: reservedAccount.map(item => ({...item, id: item.requestId})),
     }, {
       name: 'Buttons',
       buttons: [{
@@ -126,7 +125,7 @@ export const states = {
       }]
     }],
   'create_account>finalScreen': success,
-  'deposit>accountList': ({ clientInfo, accountList }) => [
+  'deposit>accountList': ({ clientInfo, accountList, uncompletedTransgers }) => [
     {
       name: 'Title',
       text: 'Список счетов',
@@ -136,9 +135,19 @@ export const states = {
     }, {
       name: 'BasicTable',
       // name: 'BasicTable',
-      header: { "number": "Номер счета", "balance": "Баланс", "currency": "Валюта" },
+      title: 'Счета',
+      headers: { "number": "Номер счета", "balance": "Баланс", "currency": "Валюта" },
       actions: { "create_doc": "Перевод" },
       list: accountList,
+    }, {
+      name: 'BasicTable',
+      // name: 'BasicTable',
+      title: 'Черновики',
+      headers: { "number": "Отправитель", "recipientAccount": "Получатель", "amount": "Сумма" },
+      actions: { "process_doc": "Перевод" },
+      list: uncompletedTransgers.map(({sourceAccount, recipientAccount, amount}) => (
+        {id:sourceAccount.id, number:sourceAccount.number, recipientAccount, amount}
+      )),
     }],
   'deposit>createDocument': () => [
     {

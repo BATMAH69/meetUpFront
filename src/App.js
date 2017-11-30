@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Content, Error, Header, Loader } from './components';
+import { Content, Console, Error, Header, Loader } from './components';
 import { states } from './utils/mocker';
 import * as widgetList from './wigets';
 
@@ -13,13 +13,15 @@ class App extends Component {
     this.state = {
       pid: 'start',
       widgets: states.init(),
-      error: 'keep calm and carry on',
+      error: '', //'keep calm and carry on',
 
       amount: '',
       inn: '',
       recipientAccountNumber: '',
 
       loader:false,
+      res: '',
+      req: '',
     };
     this.createWidgets = this.createWidgets.bind(this);
   }
@@ -41,7 +43,7 @@ class App extends Component {
   }
 
   render() {
-    const { widgets, error, loader } = this.state;
+    const { widgets, error, loader, res, req } = this.state;
     return (
       <div className="App" style={{ flex: 1 }}>
         <Loader loading={loader} />
@@ -50,6 +52,8 @@ class App extends Component {
         <Content>
           {this.createWidgets()}
         </Content>
+        <Console text={res} title="res" />
+        <Console text={req} title="req" />
       </div>
     );
   }

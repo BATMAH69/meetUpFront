@@ -12,7 +12,7 @@
   },
   "proxy": "http://ovz1.rosfish.6okmz.vps.myjino.ru:49336",
   "scripts": {
-    "start": "PORT=3003 react-scripts start",
+    "start": "DANGEROUSLY_DISABLE_HOST_CHECK=true PORT=3003 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
