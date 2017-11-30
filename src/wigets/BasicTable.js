@@ -1,8 +1,6 @@
 import React from 'react';
 import { process } from '../utils/transfer';
 import {
-  Button,
-
   Paper,
   Table,
   TableHead,
