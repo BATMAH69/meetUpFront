@@ -4,7 +4,7 @@ const identification = () => [
     text: 'Идентификация',
   }, {
     id: 'inn',
-    name: 'TextInput',
+    name: 'NumberInput',
     label: 'Инн'
   }, {
     name: 'Buttons',
@@ -19,7 +19,7 @@ const success = () => [{
   text: 'Успешная операция',
 }, {
   name: 'Image',
-  src: 'http://img11.hostingpics.net/pics/999033vaultboyvectorbybac0nbr0nyd5lo6mw.png',
+  src: 'http://meet.cherenov.ru/assets/success.png',
   maxWidth: 160,
 }, {
   name: 'Buttons',
@@ -38,7 +38,7 @@ export const states = {
       text: 'Начало работы',
     }, {
       name: 'Image',
-      src: 'https://image.playerauctions.com/sellerstore/554129/20160221131953_LogoImage_71%D1%85541.png',
+      src: 'http://meet.cherenov.ru/assets/logo.png',
       maxWidth: 120,
     }, {
       name: 'NextButton',
