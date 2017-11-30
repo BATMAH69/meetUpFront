@@ -11,4 +11,4 @@ export const Console = ({ text, title }) => {
       <textarea defaultValue={text} key={Date.now()} style={{width:'100%', height:100}} />
     </div>
   );
-}
+};

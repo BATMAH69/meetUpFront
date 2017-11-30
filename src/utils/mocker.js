@@ -50,6 +50,7 @@ export const states = {
       text: 'Создание перевода',
       action: 'deposit',
       param: 'start',
+      hide: window.location.pathname !== '/console',
     }
   ],
   'deposit>identification': identification,

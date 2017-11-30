@@ -5,10 +5,15 @@ import {
   Button,
 } from 'material-ui';
 
-export const NextButton = ({ text = 'Далее', onNext, state, step, action = 'next', fields, param }) => (
-  <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end' }}>
-    <Button raised color="primary" onClick={() => process(param || state.pid, action, onNext, filter(state, fields))}>
-      {text}
-    </Button>
-  </div>
-);
+export const NextButton = ({ text = 'Далее', onNext, state, step, action = 'next', fields, param, hide = false }) => {
+  if (hide){
+    return '';
+  }
+  return (
+    <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end' }}>
+      <Button raised color="primary" onClick={() => process(param || state.pid, action, onNext, filter(state, fields))}>
+        {text}
+      </Button>
+    </div>
+  );
+};
